@@ -1,0 +1,153 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+}
+
+body {
+    background-color: rgb(194, 143, 215);
+    /* Optional: A nice gradient background instead of flat color */
+    background: linear-gradient(135deg, #c28fd7, #8e44ad);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+.head {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.head h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+/* Main Container */
+section {
+    flex: 1; /* Pushes footer to bottom */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* The Weather Card */
+.box {
+    background-color: white;
+    width: 100%;
+    max-width: 450px; /* Prevents it from getting too wide */
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+
+.box h2 {
+    color: rgb(75, 0, 130);
+    margin-bottom: 1.5rem;
+}
+
+/* Clean Form Styling */
+.form {
+    margin-bottom: 20px;
+}
+
+#wForm {
+    display: flex;
+    gap: 10px; /* Space between input and button */
+}
+
+#cityInput {
+    flex: 1; /* Input takes up remaining space */
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 25px; /* Rounded pill shape */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(138, 43, 226); /* Purple to match theme */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+    background-color: rgb(75, 0, 130);
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+/* Weather Info Section */
+#weatherInfo {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+#temp {
+    font-size: 3rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    font-size: 1rem;
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .box {
+        padding: 1.5rem;
+    }
+    
+    #wForm {
+        flex-direction: column; /* Stack input and button on very small screens */
+    }
+    
+    .button {
+        width: 100%;
+    }
+}

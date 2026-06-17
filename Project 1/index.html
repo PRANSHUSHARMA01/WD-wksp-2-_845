@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API PROJECT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling for the result area */
+        #weatherInfo {
+            display: none; /* Hidden by default until data loads */
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .weather-icon {
+            width: 64px;
+            height: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="head">
+        <h1>WeatherAPI Project</h1>
+    </header>
+    <section>
+        <div class="container">
+            <div class="box">
+                <h2>Weather App</h2>
+
+                <div class="form">
+                    <form id="wForm">
+                        <input type="text" id="cityInput" placeholder="Enter location" required>
+                        <button class="button" type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div id="weatherInfo">
+                    <h3 id="cityName"></h3>
+                    <img id="weatherIcon" src="" alt="Weather Icon" class="weather-icon">
+                    <h1 id="temp"></h1>
+                    <p id="condition"></p>
+                    <div class="details">
+                        <p>Humidity: <span id="humidity"></span>%</p>
+                        <p>Wind: <span id="wind"></span> kph</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h5> Made by Pranshu Sharma Roll.No-2503201000845</h5>
+    </footer>
+    <footer class="footer">
+        <p>&copy; 2026 API Project using Javascript. </p>
+    </footer>
+
+    <script>
+        const apiKey = "22cc554a6e7f40e9bba65119253012";
+
+        // FIX: Changed 'weatherForm' to 'wForm' to match your HTML
+        const form = document.getElementById('wForm');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // STOP the page from reloading
+            getWeather();
+        });
+
+        async function getWeather() {
+            const cityInput = document.getElementById('cityInput');
+            const city = cityInput.value.trim();
+
+            if (!city) {
+                alert("Please enter a city name");
+                return;
+            }
+
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("City not found");
+                }
+
+                const data = await response.json();
+                updateUI(data);
+
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        function updateUI(data) {
+            document.getElementById('cityName').textContent = `${data.location.name}, ${data.location.country}`;
+            document.getElementById('temp').textContent = `${data.current.temp_c}°C`;
+            document.getElementById('condition').textContent = data.current.condition.text;
+            document.getElementById('humidity').textContent = data.current.humidity;
+            document.getElementById('wind').textContent = data.current.wind_kph;
+
+            const iconUrl = `https:${data.current.condition.icon}`;
+            document.getElementById('weatherIcon').src = iconUrl;
+
+            document.getElementById('weatherInfo').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
