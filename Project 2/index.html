@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <p class="eyebrow">Daily Planner</p>
+      <h1>My Tasks</h1>
+      <p class="subtitle">Stay focused with a simple to-do list that keeps track of what matters.</p>
+
+      <form class="task-form" id="taskForm">
+        <input id="taskInput" type="text" placeholder="Add a new task..." maxlength="80" autocomplete="off">
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" id="filters">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="active">Active</button>
+          <button data-filter="done">Done</button>
+        </div>
+        <button class="ghost" id="clearCompleted" type="button">Clear completed</button>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+      <p class="empty" id="emptyState">No tasks yet. Add one to get started.</p>
+
+      <footer class="footer">
+        <span id="taskCount">0 tasks</span>
+      </footer>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
